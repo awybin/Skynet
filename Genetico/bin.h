@@ -1,7 +1,11 @@
-#pragma once
-
 #include <iostream>
 #include<vector>
+
+typedef struct Elemento
+{
+	unsigned int size;
+	unsigned int id;
+}elemento;
 
 class bin
 {
@@ -9,7 +13,7 @@ public:
 
 	bin();
 
-	bin(unsigned int capacity);
+	bin(unsigned int capacity, unsigned int qtdElem);
 
 	~bin();
 
@@ -17,14 +21,17 @@ public:
 
 	std::vector<unsigned int> getBins();
 
-	std::vector<unsigned int> getElements();
+	std::vector<elemento> getElements();
 
 	void fillBins();
+
+	/*adiciona um elemento ao vetor de elementos*/
+	void add(unsigned int elemSize, unsigned int id);
 
 private:
 	unsigned int _capacity;
 	std::vector<unsigned int> _binPack;
-	std::vector<unsigned int> _elements;
+	std::vector<elemento> _elements;
 };
 
 
