@@ -1,4 +1,5 @@
 #include "bin.h"
+#include "criaPop.h"
 
 int main(void)
 {

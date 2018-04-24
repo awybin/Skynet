@@ -24,3 +24,16 @@ bin leArq(char* path) {
 	return pop;
 }
 
+bin reordena(bin pop, int seed)
+{
+	return bin();
+}
+
+std::vector<bin> criaVecPop()
+{
+	return std::vector<bin>();
+}
+
+void addVecPop(bin pop)
+{
+}
