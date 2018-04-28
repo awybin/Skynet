@@ -1,3 +1,6 @@
+#ifndef BIN_H
+#define BIN_H
+
 #include <iostream>
 #include<vector>
 
@@ -32,6 +35,9 @@ public:
 	/*Adiciona um elemento ao vetor de elementos*/
 	void add(unsigned int elemSize, unsigned int id);
 
+	/*Muda o vetor de elementos pelo recebido como argumento*/
+	void setElem(std::vector<elemento> elementos);
+
 private:
 	/*Capacidade maxima de um bin*/
 	unsigned int _capacity;
@@ -43,5 +49,5 @@ private:
 	std::vector<elemento> _elements;
 };
 
-
+#endif
 

@@ -1,7 +1,5 @@
 #include "bin.h"
 
-
-
 bin::bin()
 {
 
@@ -52,4 +50,8 @@ void bin::add(unsigned int elemSize, unsigned int id) {
 	elem.size = elemSize;
 	elem.id = id;
 	_elements.push_back(elem);
+}
+
+void bin::setElem(std::vector<elemento> elementos) {
+	_elements = elementos;
 }
