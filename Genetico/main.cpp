@@ -8,9 +8,6 @@
 #define ARQ4 "Falkenauer_u250_04.txt"
 #define ARQ5 "Falkenauer_u500_05.txt"
 
-int fitness(Solucao individuo);
-void selecao(std::vector<Solucao> populacao);
-void crossover(Solucao pai, Solucao mae);
 void geraSeed();
 
 int main(void)
@@ -62,31 +59,4 @@ void geraSeed() {
 		v[i] = temp;
 		fprintf(f, "%d\n", temp);
 	}
-}
-
-int fitness(Solucao individuo)
-{
-	return individuo.getBins().size();
-}
-
-void selecao(std::vector<Solucao> populacao)
-{
-	std::vector<std::pair<Solucao, int>> popFit;
-	for (int i = 0; i < populacao.size(); i++)
-	{
-		popFit.emplace_back(populacao[i], fitness(populacao[i]));
-	}
-
-	
-
-
-	for (int i = 0; i < populacao.size(); i++)
-	{
-		populacao[i] = popFit[i].first;
-	}
-}
-
-void crossover(Solucao pai, Solucao mae)
-{
-
 }

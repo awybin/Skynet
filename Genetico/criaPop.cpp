@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_DEPRECATE
 #include <iostream>
 #include <stdlib.h>
+#include <algorithm> 
 #include "criaPop.h"
 
 
@@ -73,4 +74,40 @@ std::vector<Solucao> criaVecPop(char* path, unsigned int popSize)
 		populacao[i].fillBins();
 	}
 	return populacao;
+}
+
+int fitness(Solucao individuo)
+{
+	return individuo.getBins().size();
+}
+
+void selecao(std::vector<Solucao> populacao)
+{
+	std::vector<std::pair<Solucao, int>> popFit;
+	for (int i = 0; i < populacao.size(); i++)
+	{
+		popFit.emplace_back(populacao[i], fitness(populacao[i]));
+	}
+
+	std::sort(popFit.begin(), popFit.end(), melhorSolucao);
+
+	for (int i = 0; i < populacao.size(); i++)
+	{
+		populacao[i] = popFit[i].first;
+	}
+}
+
+void crossover(Solucao pai, Solucao mae)
+{
+
+}
+
+bool melhorSolucao(Solucao s1, Solucao s2)
+{
+	if (fitness(s1) >= fitness(s2))
+	{
+		return true;
+	}
+	else
+		return false;
 }
