@@ -1,24 +1,24 @@
-#ifndef BIN_H
-#define BIN_H
+#ifndef SOLUCAO_H
+#define SOLUCAO_H
 
 #include <iostream>
 #include<vector>
 
 typedef struct Elemento
 {
-	unsigned int size;
+	unsigned int weight;
 	unsigned int id;
 }elemento;
 
-class bin
+class Solucao
 {
 public:
 
-	bin();
+	Solucao();
 
-	bin(unsigned int capacity, unsigned int qtdElem);
+	Solucao(unsigned int capacity, unsigned int qtdElem);
 
-	~bin();
+	~Solucao();
 
 	/*Retorna o valor equivalente a quanto cabe em um bin*/
 	unsigned int getCapacity();
@@ -42,8 +42,9 @@ private:
 	/*Capacidade maxima de um bin*/
 	unsigned int _capacity;
 
-	/*Vetor que representa os bins, cada posição é um bin e o numero armazenado é equivalente ao numero de elementos*/
-	std::vector<unsigned int> _binPack;
+	/*Vetor que representa os bins, cada posição é um bin e
+	o numero armazenado é equivalente ao numero de elementos seguindo a ordem dos elementos*/
+	std::vector<unsigned int> _bins;
 
 	/*Vetor com os elementos*/
 	std::vector<elemento> _elements;
