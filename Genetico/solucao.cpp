@@ -1,4 +1,6 @@
 #include "solucao.h"
+#include <stdlib.h>
+#include <time.h>
 
 Solucao::Solucao()
 {
@@ -57,4 +59,24 @@ void Solucao::add(unsigned int elemSize, unsigned int id) {
 
 void Solucao::setElem(std::vector<elemento> elementos) {
 	_elements = elementos;
+}
+
+void Solucao::swap()
+{
+    int seed;
+    FILE *f;
+    fscanf(f, "%d", &seed);
+    printf("Seed: %d\n", seed);
+    srand(seed);
+    int idx1 = 0, idx2 = 0;
+    while(idx1==idx2)
+    {
+        idx1 = rand() % _elements.size();
+        idx2 = rand() % _elements.size();
+    }
+    auto aux = _elements[idx1];
+    _elements[idx1] = _elements[idx2];
+    _elements[idx2] = aux;
+    fillBins();
+    
 }

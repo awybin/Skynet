@@ -37,13 +37,16 @@ public:
 
 	/*Muda o vetor de elementos pelo recebido como argumento*/
 	void setElem(std::vector<elemento> elementos);
+        
+        /*Troca posicao de dois elementos, altera permanentemente a solucao, logo copie antes*/
+        void swap();
 
 private:
 	/*Capacidade maxima de um bin*/
 	unsigned int _capacity;
 
-	/*Vetor que representa os bins, cada posição é um bin e
-	o numero armazenado é equivalente ao numero de elementos seguindo a ordem dos elementos*/
+	/*Vetor que representa os bins, cada posiÃ§Ã£o Ã© um bin e
+	o numero armazenado Ã© equivalente ao numero de elementos seguindo a ordem dos elementos*/
 	std::vector<unsigned int> _bins;
 
 	/*Vetor com os elementos*/
