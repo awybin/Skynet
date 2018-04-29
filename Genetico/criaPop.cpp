@@ -4,7 +4,7 @@
 #include "criaPop.h"
 
 
-bin leArq(char* path) {
+Solucao leArq(char* path) {
 	FILE *f;
 	unsigned int qtd, tam, elemSize;
 	if ((f = fopen(path, "rt")) == NULL) {
@@ -14,7 +14,7 @@ bin leArq(char* path) {
 
 	fscanf(f, "%d%d", &qtd, &tam);
 
-	bin pop(tam, qtd);
+	Solucao pop(tam, qtd);
 
 	for (unsigned int i = 0; i < qtd; i++) {
 		fscanf(f, "%d", &elemSize);
@@ -23,38 +23,38 @@ bin leArq(char* path) {
 	return pop;
 }
 
-bin reordena(bin pop, unsigned int seed)
+Solucao reordena(Solucao pop, unsigned int seed)
 {
 	std::vector<elemento> temp, vet;
 	temp = pop.getElements();
-	int tam = temp.size();
+	unsigned int tam = temp.size();
 
 	vet.reserve(tam);
-	for (int i = 0; i < tam; i++) {
+	for (unsigned int i = 0; i < tam; i++) {
 		elemento elem;
-		elem.size = -1; 
+		elem.weight = -1;
 		elem.id = -1;
 		vet.push_back(elem);
 	}
 	srand(seed);
 
-	for (int i = 0; i < temp.size(); i++) {
+	for (unsigned int i = 0; i < temp.size(); i++) {
 		int pos;
 
 		do {
 			pos = rand() % temp.size();
 		} while (vet[pos].id != -1);
-		
+
 		vet[pos] = temp[i];
 	}
 	pop.setElem(vet);
 	return pop;
 }
 
-std::vector<bin> criaVecPop(char* path, unsigned int popSize)
+std::vector<Solucao> criaVecPop(char* path, unsigned int popSize)
 {
 	int seed;
-	std::vector<bin> populacao;
+	std::vector<Solucao> populacao;
 	FILE *f;
 
 	populacao.reserve(popSize);
@@ -64,7 +64,7 @@ std::vector<bin> criaVecPop(char* path, unsigned int popSize)
 		exit(1);
 	}
 
-	for (int i = 0; i < popSize; i++)
+	for (unsigned int i = 0; i < popSize; i++)
 	{
 		fscanf(f, "%d", &seed);
 		populacao.push_back(leArq(path));

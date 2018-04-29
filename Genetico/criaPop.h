@@ -1,11 +1,11 @@
 #include<vector>
-#include "bin.h"
+#include "solucao.h"
 
 /*Le o arquivo*/
-bin leArq(char* path);
+Solucao leArq(char* path);
 
 /*Reordena o vetor de elementos de um membro da populacao*/
-bin reordena(bin pop, unsigned int seed);
+Solucao reordena(Solucao pop, unsigned int seed);
 
 /*Cria o vetor de populacoes*/
-std::vector<bin> criaVecPop(char* path, unsigned int popSize);
+std::vector<Solucao> criaVecPop(char* path, unsigned int popSize);
