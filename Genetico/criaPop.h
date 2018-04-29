@@ -19,3 +19,5 @@ void selecao(std::vector<Solucao> populacao);
 void crossover(Solucao pai, Solucao mae);
 
 bool melhorSolucao(Solucao s1, Solucao s2);
+
+bool mutacao(int seed);

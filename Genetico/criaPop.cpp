@@ -83,18 +83,7 @@ int fitness(Solucao individuo)
 
 void selecao(std::vector<Solucao> populacao)
 {
-	std::vector<std::pair<Solucao, int>> popFit;
-	for (int i = 0; i < populacao.size(); i++)
-	{
-		popFit.emplace_back(populacao[i], fitness(populacao[i]));
-	}
-
-	std::sort(popFit.begin(), popFit.end(), melhorSolucao);
-
-	for (int i = 0; i < populacao.size(); i++)
-	{
-		populacao[i] = popFit[i].first;
-	}
+	 std::sort(populacao.begin(), populacao.end(), melhorSolucao);
 }
 
 void crossover(Solucao pai, Solucao mae)
@@ -110,4 +99,15 @@ bool melhorSolucao(Solucao s1, Solucao s2)
 	}
 	else
 		return false;
+}
+
+bool mutacao(int seed)
+{
+	srand(seed);
+	int mutRatio = 2;
+	if (mutRatio > rand() % 100)
+	{
+		return true;
+	}
+	false;
 }
