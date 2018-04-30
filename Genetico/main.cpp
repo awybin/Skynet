@@ -10,6 +10,8 @@
 
 void geraSeed();
 
+void simulatedAnnealing();
+
 int main(void)
 {
 	int popSize = 200;
@@ -70,4 +72,24 @@ void geraSeed() {
 		v[i] = temp;
 		fprintf(f, "%d\n", temp);
 	}
+}
+
+void simulatedAnnealing()
+{
+    int qtdIni = 1;
+    auto solu = criaVecPop(ARQ1, qtdIni);
+    for(int i=0; i<solu.size(); i++)
+    {
+        for(int j=0; j<1000; j++)
+        {
+            auto soluOrig = solu[i];
+            solu[i].swap();
+            if(fitness(soluOrig)<fitness(solu[i]))
+                solu[i] = soluOrig;
+            else
+            {
+                
+            }
+        }
+    }
 }
