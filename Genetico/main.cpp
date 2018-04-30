@@ -2,6 +2,8 @@
 #include "solucao.h"
 #include "criaPop.h"
 
+#include <math.h>
+
 #define ARQ1 "Falkenauer_t60_00.txt"
 #define ARQ2 "Falkenauer_t120_01.txt"
 #define ARQ3 "Falkenauer_u120_02.txt"
@@ -76,19 +78,30 @@ void geraSeed() {
 
 void simulatedAnnealing()
 {
+    double e = 2.718281828, p, temp;
+    int seed;
+    FILE *f;
+    fscanf(f, "%d", &seed);
+    printf("SA Seed: %d\n", seed);
     int qtdIni = 1;
     auto solu = criaVecPop(ARQ1, qtdIni);
     for(int i=0; i<solu.size(); i++)
     {
-        for(int j=0; j<1000; j++)
+        for(temp=80; temp>0.00008; temp*=0.9)
         {
-            auto soluOrig = solu[i];
-            solu[i].swap();
-            if(fitness(soluOrig)<fitness(solu[i]))
-                solu[i] = soluOrig;
-            else
+            for(int j=0; j<200; j++)
             {
-                
+                auto soluNew = solu[i];
+                soluNew.swap();
+                int delta = fitness(soluNew)-fitness(solu[i]);
+                if(delta<0)
+                    solu[i] = soluNew;
+                else
+                {
+                    p = pow(e, -((double)delta)/temp);
+                    if(rand() / (double)RAND_MAX <= p)
+                        solu[i] = soluNew;
+                }
             }
         }
     }
