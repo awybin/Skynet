@@ -3,6 +3,7 @@
 #include "criaPop.h"
 
 #include <math.h>
+#include<stdio.h>
 
 #define ARQ1 "Falkenauer_t60_00.txt"
 #define ARQ2 "Falkenauer_t120_01.txt"
@@ -42,6 +43,8 @@ int main(void)
 		printf("%d/%d, ", teste[1][j].id, teste[1][j].weight);
 	}
 	printf("\n\n");
+        
+        simulatedAnnealing();
 
 	return 0;
 }
@@ -78,6 +81,7 @@ void geraSeed() {
 
 void simulatedAnnealing()
 {
+    printf("\n===================================================\n");
     double e = 2.718281828, p, temp;
     int seed;
     FILE *f;
@@ -85,8 +89,10 @@ void simulatedAnnealing()
     printf("SA Seed: %d\n", seed);
     int qtdIni = 1;
     auto solu = criaVecPop(ARQ1, qtdIni);
+    printf("%d", solu.size());
     for(int i=0; i<solu.size(); i++)
     {
+        printf("a\n");
         for(temp=80; temp>0.00008; temp*=0.9)
         {
             for(int j=0; j<200; j++)
@@ -104,5 +110,6 @@ void simulatedAnnealing()
                 }
             }
         }
+        printf("%d\n", solu[i].getBins().size());
     }
 }
