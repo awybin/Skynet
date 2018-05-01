@@ -61,13 +61,16 @@ void Solucao::setElem(std::vector<elemento> elementos) {
 	_elements = elementos;
 }
 
-void Solucao::swap()
+void Solucao::swap(unsigned int seed)
 {
-    int seed;
-    FILE *f;
-    fscanf(f, "%d", &seed);
-    printf("Seed: %d\n", seed);
-    srand(seed);
+    //printf("Swap Seed: %d\n", seed);
+    static int x = 0;
+    if(x==0)
+    {
+        srand(seed);
+        x=1;
+        printf("a\n");
+    }
     int idx1 = 0, idx2 = 0;
     while(idx1==idx2)
     {

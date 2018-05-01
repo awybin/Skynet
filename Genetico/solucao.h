@@ -39,7 +39,7 @@ public:
 	void setElem(std::vector<elemento> elementos);
         
         /*Troca posicao de dois elementos, altera permanentemente a solucao, logo copie antes*/
-        void swap();
+        void swap(unsigned int seed);
 
 private:
 	/*Capacidade maxima de um bin*/

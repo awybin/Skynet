@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include<stdio.h>
+#include <vector>
 
 #define ARQ1 "Falkenauer_t60_00.txt"
 #define ARQ2 "Falkenauer_t120_01.txt"
@@ -83,22 +84,30 @@ void simulatedAnnealing()
 {
     printf("\n===================================================\n");
     double e = 2.718281828, p, temp;
-    int seed;
+    unsigned int saSeed;
     FILE *f;
-    fscanf(f, "%d", &seed);
-    printf("SA Seed: %d\n", seed);
+    if ((f = fopen("seed.txt", "rt")) == NULL) 
+    {
+        printf("erro ao abrir o arquivo\n");
+	exit(1);
+    }
+    fscanf(f, "%d", &saSeed);
+    printf("SA Seed: %d\n", saSeed);
     int qtdIni = 1;
+    unsigned int swapSeed;
+    fscanf(f, "%d", &swapSeed);
+    printf("Swap Seed: %d\n", swapSeed);
     auto solu = criaVecPop(ARQ1, qtdIni);
-    printf("%d", solu.size());
+    printf(" Quantidade de solucoes iniciais:%d\n", solu.size());
+    printf("%d\n", solu[0].getBins().size());
     for(int i=0; i<solu.size(); i++)
     {
-        printf("a\n");
         for(temp=80; temp>0.00008; temp*=0.9)
         {
-            for(int j=0; j<200; j++)
+            for(int j=0; j<1000; j++)
             {
                 auto soluNew = solu[i];
-                soluNew.swap();
+                soluNew.swap(swapSeed);
                 int delta = fitness(soluNew)-fitness(solu[i]);
                 if(delta<0)
                     solu[i] = soluNew;
