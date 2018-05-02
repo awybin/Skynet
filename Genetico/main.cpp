@@ -84,22 +84,46 @@ void simulatedAnnealing()
 {
     printf("\n===================================================\n");
     double e = 2.718281828, p, temp;
-    unsigned int saSeed;
-    FILE *f;
-    if ((f = fopen("seed.txt", "rt")) == NULL) 
-    {
-        printf("erro ao abrir o arquivo\n");
-	exit(1);
-    }
-    fscanf(f, "%d", &saSeed);
-    printf("SA Seed: %d\n", saSeed);
+    unsigned int saSeed, swapSeed, arqNum;
     int qtdIni = 1;
-    unsigned int swapSeed;
-    fscanf(f, "%d", &swapSeed);
-    printf("Swap Seed: %d\n", swapSeed);
-    auto solu = criaVecPop(ARQ1, qtdIni);
-    printf(" Quantidade de solucoes iniciais:%d\n", solu.size());
+    printf("Informe qual instancia do problema deve ser resolvida:\n");
+    scanf("%d", &arqNum);
+    std::vector<Solucao> solu;
+    if(arqNum==1)
+    {
+        solu = criaVecPop(ARQ1, qtdIni);
+        saSeed = 15000;
+        swapSeed = 16000;
+    }
+    else if(arqNum==2)
+    {
+        solu = criaVecPop(ARQ2, qtdIni);
+        
+    }
+    else if(arqNum==3)
+    {
+        solu = criaVecPop(ARQ3, qtdIni);
+        
+    }
+    else if(arqNum==4)
+    {
+        solu = criaVecPop(ARQ4, qtdIni);
+        
+    }
+    else if(arqNum==5)
+    {
+        solu = criaVecPop(ARQ5, qtdIni);
+        
+    }
+    else
+    {
+        printf("Instancia nao existe\n");
+        exit(1);
+    }
+    printf("Quantidade de solucoes iniciais:%d\n", (unsigned int)solu.size());
     printf("%d\n", solu[0].getBins().size());
+    auto iniTime = time(NULL);
+    printf("SA Seed: %d\nSwap Seed: %d\n", saSeed, swapSeed);
     for(int i=0; i<solu.size(); i++)
     {
         for(temp=80; temp>0.00008; temp*=0.9)
@@ -121,4 +145,5 @@ void simulatedAnnealing()
         }
         printf("%d\n", solu[i].getBins().size());
     }
+    printf("Tempo de execucao: %d\n", (unsigned int)(time(NULL)-iniTime));
 }
