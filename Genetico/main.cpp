@@ -5,6 +5,7 @@
 #include <math.h>
 #include<stdio.h>
 #include <vector>
+#include <time.h>
 
 #define ARQ1 "Falkenauer_t60_00.txt"
 #define ARQ2 "Falkenauer_t120_01.txt"
@@ -84,7 +85,7 @@ void simulatedAnnealing()
 {
     printf("\n===================================================\n");
     double e = 2.718281828, p, temp;
-    unsigned int saSeed, swapSeed, arqNum;
+    unsigned int saSeed, swapSeed, arqNum, n;
     int qtdIni = 1;
     printf("Informe qual instancia do problema deve ser resolvida:\n");
     scanf("%d", &arqNum);
@@ -94,6 +95,7 @@ void simulatedAnnealing()
         solu = criaVecPop(ARQ1, qtdIni);
         saSeed = 15000;
         swapSeed = 16000;
+        n = 2700;
     }
     else if(arqNum==2)
     {
@@ -128,7 +130,7 @@ void simulatedAnnealing()
     {
         for(temp=80; temp>0.00008; temp*=0.9)
         {
-            for(int j=0; j<1000; j++)
+            for(unsigned int j=0; j<n; j++)
             {
                 auto soluNew = solu[i];
                 soluNew.swap(swapSeed);
@@ -145,5 +147,5 @@ void simulatedAnnealing()
         }
         printf("%d\n", solu[i].getBins().size());
     }
-    printf("Tempo de execucao: %d\n", (unsigned int)(time(NULL)-iniTime));
+    printf("Tempo de execucao: %f\n", (double)(time(NULL)-iniTime));
 }
