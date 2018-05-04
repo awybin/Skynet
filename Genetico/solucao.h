@@ -41,6 +41,8 @@ public:
     /*Troca posicao de dois elementos, altera permanentemente a solucao, logo copie antes*/
     void swap(unsigned int seed);
 
+	void exibe();
+
 private:
 	/*Capacidade maxima de um bin*/
 	unsigned int _capacity;

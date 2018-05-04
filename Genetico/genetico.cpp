@@ -104,17 +104,24 @@ void mutacao(Solucao filho)
 }
 
 void genetico(char* path, int popSize) {
+	int teste = 0;
 	int cont = 0; //Conta as repetições sem melhora
 	std::vector<Solucao> populacao;
 	populacao = criaVecPop(path, popSize);
+
+	printf("Inicial 0 %d bins, capacidade %d\n\n", populacao[0].getBins().size(), populacao[0].getCapacity());
+	populacao[0].exibe();
+	scanf("%d", teste);
 
 	populacao = selecao(populacao);
 	Solucao melhor = populacao[0];
 	srand(2);
 
 	printf("Inicial %d bins\n\n", melhor.getBins().size());
+	melhor.exibe();
+	scanf("%d", teste);
 
-	while (cont < 200) {
+	while (cont < 50) {
 		
 		populacao = embaralhaPop(populacao);
 
@@ -135,6 +142,8 @@ void genetico(char* path, int popSize) {
 		}
 	}
 	printf("Final %d bins\n\n", melhor.getBins().size());
+	melhor.exibe();
+	scanf("%d", teste);
 }
 
 std::vector<Solucao> embaralhaPop(std::vector<Solucao> populacao) {

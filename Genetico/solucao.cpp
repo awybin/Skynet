@@ -83,3 +83,19 @@ void Solucao::swap(unsigned int seed)
     fillBins();
     
 }
+
+void Solucao::exibe() {
+	int aux = 0, pesTot = 0;
+	printf("%d\n", _bins.size());
+	for (int i = 0; i < _elements.size(); i++) {
+
+		if (_bins[aux] == i) {
+			printf("Peso: %d\n", pesTot);
+			aux++;
+			pesTot = 0;
+		}
+		pesTot += _elements[i].weight;
+		printf("%d\t", _elements[i].id);
+	}
+	printf("Peso: %d\n", pesTot);
+}
