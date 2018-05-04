@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_DEPRECATE
 #include "solucao.h"
 #include "criaPop.h"
+#include "genetico.h"
 
 #include <math.h>
 #include<stdio.h>
@@ -19,35 +20,22 @@ void simulatedAnnealing();
 
 int main(void)
 {
-	int popSize = 200;
+	int popSize = 1000;
 	std::vector<Solucao> populacao;
 	std::vector<elemento> teste[2];
 
-	populacao = criaVecPop(ARQ1, popSize);
-	printf("\n id/size, \n\n");
-	for (int i = 0; i < 2; i++) {
-		printf("%d Membro da Pop:\n\n", i);
-		std::vector<elemento> elementos = populacao[i].getElements();
-		for (int j = 0; j < elementos.size(); j++) {
-			printf("%d/%d, ", elementos[j].id, elementos[j].weight);
-		}
-		printf("\n\n");
-	}
+	printf("Arq1\n\n");
+	genetico(ARQ1, popSize);
+	printf("Arq2\n\n");
+	genetico(ARQ2, popSize);
+	printf("Arq3\n\n");
+	genetico(ARQ3, popSize);
+	printf("Arq4\n\n");
+	genetico(ARQ4, popSize);
+	printf("Arq5\n\n");
+	genetico(ARQ5, popSize);
 
-	crossover(populacao[0], populacao[1], teste);
-
-	printf("Filho 1\n\n");
-	for (int j = 0; j < teste[0].size(); j++) {
-		printf("%d/%d, ", teste[0][j].id, teste[0][j].weight);
-	}
-	printf("\n\nFilho 2\n\n");
-	for (int j = 0; j < teste[1].size(); j++) {
-		printf("%d/%d, ", teste[1][j].id, teste[1][j].weight);
-	}
-	printf("\n\n");
-        
-        simulatedAnnealing();
-
+	scanf("%d", popSize);
 	return 0;
 }
 
