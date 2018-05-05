@@ -34,7 +34,10 @@ int main(void)
 	printf("Arq5===================================\n\n");
 	genetico(ARQ5, popSize);
 
-	scanf("%d", popSize);
+	scanf("%d", &popSize);
+        
+        simulatedAnnealing();
+        
 	return 0;
 }
 
@@ -77,32 +80,40 @@ void simulatedAnnealing()
     printf("Informe qual instancia do problema deve ser resolvida:\n");
     scanf("%d", &arqNum);
     std::vector<Solucao> solu;
-    if(arqNum==1)
+    if(arqNum==1)// Resultado: 20 em 0 seg
     {
         solu = criaVecPop(ARQ1, qtdIni);
         saSeed = 15000;
         swapSeed = 16000;
         n = 2700;
     }
-    else if(arqNum==2)
+    else if(arqNum==2)// Resultado: 41 em 4 seg
     {
         solu = criaVecPop(ARQ2, qtdIni);
-        
+        saSeed = 15000;
+        swapSeed = 16000;
+        n = 21000;
     }
-    else if(arqNum==3)
+    else if(arqNum==3)// Resultado: 46 em 87 seg
     {
         solu = criaVecPop(ARQ3, qtdIni);
-        
+        saSeed = 15000;
+        swapSeed = 16000;
+        n = 500000;
     }
-    else if(arqNum==4)
+    else if(arqNum==4)// Resultado: 104 em 106 seg
     {
         solu = criaVecPop(ARQ4, qtdIni);
-        
+        saSeed = 15000;
+        swapSeed = 16000;
+        n = 500000;
     }
-    else if(arqNum==5)
+    else if(arqNum==5)// Resultado: 213 em 137 seg
     {
         solu = criaVecPop(ARQ5, qtdIni);
-        
+        saSeed = 15000;
+        swapSeed = 16000;
+        n = 500000;
     }
     else
     {
