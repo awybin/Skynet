@@ -2,6 +2,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm> 
+#include <time.h>
+
 #include "criaPop.h"
 #include "genetico.h"
 
@@ -22,7 +24,7 @@ std::vector<Solucao> selecao(std::vector<Solucao> populacao)
 
 elemento recursiva(int i, std::vector<int> comecoBin, std::vector<int> fimBin, Solucao pai1, Solucao pai2) {
 	for (int j = 0; j < comecoBin.size(); j++) {
-		for (int k = comecoBin[j]; k < fimBin[j]; k++) {
+		for (int k = comecoBin[j]; k <= fimBin[j]; k++) {
 			if (pai2.getElements()[i].id == pai1.getElements()[k].id) {
 				//Se o elemento i esta em um dos melhores bins	
 				return recursiva(k, comecoBin, fimBin, pai1, pai2);
@@ -87,6 +89,7 @@ void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]) {
 	
 	for (int i = 0; i < pai.getElements().size(); i++) {
 		//copia os melhores bins do pai
+		
 		if (comecoBinPai.size() > 0 && auxPai < comecoBinPai.size()) {
 			if (i >= comecoBinPai[auxPai] && i <= fimBinPai[auxPai]) {
 				filho1.push_back(pai.getElements()[i]);
@@ -100,7 +103,7 @@ void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]) {
 		//copia os elementos restantes da mae
 		else 
 			filho1.push_back(recursiva(i, comecoBinPai, fimBinPai, pai, mae));
-		
+
 		//copia os melhores bins da mae
 		if (comecoBinMae.size() > 0 && auxMae < comecoBinMae.size()) {
 			if (i >= comecoBinMae[auxMae] && i <= fimBinMae[auxMae]) {
@@ -121,6 +124,9 @@ void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]) {
 
 	filhos[0].setElem(filho1);
 	filhos[1].setElem(filho2);
+
+	filhos[0] = mutacao(filhos[0]);
+	filhos[1] = mutacao(filhos[1]);
 
 	filhos[0].fillBins();
 	filhos[1].fillBins();
@@ -179,8 +185,8 @@ void crossover(Solucao pai, Solucao mae, Solucao filhos[2])
 		} while (elemPai[p].id != -1);
 		alternar++;
 	}
-	mutacao(filhos[0]);
-	mutacao(filhos[1]);
+	filhos[0] = mutacao(filhos[0]);
+	filhos[1] = mutacao(filhos[1]);
 
 	filhos[0].setElem(filho1);
 	filhos[1].setElem(filho2);
@@ -199,9 +205,9 @@ bool melhorSolucao(const Solucao &s1, const Solucao &s2)
 		return false;
 }
 
-void mutacao(Solucao filho)
+Solucao mutacao(Solucao filho)
 {
-	int mutRatio = 3;
+	int mutRatio = 7;
 	if (mutRatio > rand() % 100)
 	{
 		for (int i = 0; i < 10; i++)
@@ -209,20 +215,27 @@ void mutacao(Solucao filho)
 			filho.swap(3);
 		}
 	}
+	return filho;
 }
 
 void genetico(char* path, int popSize) {
 	int teste = 0;
 	int cont = 0; //Conta as repetições sem melhora
 	std::vector<Solucao> populacao;
+	std::vector<Solucao> populacao2;
 	populacao = criaVecPop(path, popSize);
-	
+	populacao2 = populacao;
+
 	populacao = selecao(populacao);
 	Solucao melhor = populacao[0];
 	srand(2);
 
 	printf("Inicial %d bins\n", melhor.getBins().size());
-	
+	//melhor.exibe();
+	//printf("\n\n");
+
+	clock_t Ticks[2];
+	Ticks[0] = clock();
 
 	while (cont < 30) {
 		
@@ -231,20 +244,26 @@ void genetico(char* path, int popSize) {
 		for (int i = 0; i < populacao.size() / 4; i++) {
 			crossover2(populacao[2*i], populacao[2 * i + 1], &populacao[populacao.size() / 2 + 2*i]);
 		}
+		//populacao = populacao2;
 
 		//Checa se houve melhora
 		populacao = selecao(populacao);
-		if (melhorSolucao(melhor, populacao[0])) {
+		if (melhorSolucao(populacao[0], melhor)) {
 			cont++;
-			//printf("%d geracao, nao melhorou\n %d bins\n\n", teste, melhor.getBins().size());
+			teste++;
 		}
 		else {
 			melhor = populacao[0];
 			cont = 0;
+			teste++;
 			//printf("%d geracao, melhorou\n %d bins\n\n", teste, melhor.getBins().size());
 		}
 	}
-	printf("Final %d bins\n\n", melhor.getBins().size());
+	printf("Final %d bins, %d geracoes\n\n", melhor.getBins().size(), teste);
+	Ticks[1] = clock();
+	double Tempo = (Ticks[1] - Ticks[0])/ CLOCKS_PER_SEC;
+	printf("Tempo gasto: %g s.\n", Tempo);
+	//melhor.exibe();
 	
 }
 

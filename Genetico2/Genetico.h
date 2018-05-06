@@ -9,7 +9,7 @@ void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]);
 
 bool melhorSolucao(const Solucao &s1, const Solucao &s2);
 
-void mutacao(Solucao filho);
+Solucao mutacao(Solucao filho);
 
 void genetico(char* path, int popSize);
 
