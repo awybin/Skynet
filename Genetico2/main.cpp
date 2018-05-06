@@ -20,7 +20,7 @@ void simulatedAnnealing();
 
 int main(void)
 {
-	int popSize = 200;
+	int popSize = 100;
 	std::vector<Solucao> populacao;
 	Solucao filhos[2];
 	/*
@@ -40,7 +40,6 @@ int main(void)
 	*/
 	printf("Arq1===================================\n\n");
 	genetico(ARQ1, popSize);
-	/*
 	printf("Arq2===================================\n\n");
 	genetico(ARQ2, popSize);
 	printf("Arq3===================================\n\n");
@@ -49,7 +48,7 @@ int main(void)
 	genetico(ARQ4, popSize);
 	printf("Arq5===================================\n\n");
 	genetico(ARQ5, popSize);
-	*/
+	
 	system("pause");
 	return 0;
 }
