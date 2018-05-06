@@ -42,6 +42,9 @@ public:
     void swap(unsigned int seed);
 
 	void exibe();
+	/*Gera arquivo de saida com o mesmo nome do path adicionando Solucao no final
+	path deve ter no maximo 200 caracteres*/
+	void geraArq(char *path);
 
 private:
 	/*Capacidade maxima de um bin*/
