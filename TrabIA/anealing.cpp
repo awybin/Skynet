@@ -88,6 +88,7 @@ void simulatedAnnealing(char* Path)
 			
 		}
 		printf("%d\n", solu[i].getBins().size());
+		solu[i].geraArq(Path, "Anealing");
 	}
 	printf("Tempo de execucao: %f\n", (double)(time(NULL) - iniTime));
 }
