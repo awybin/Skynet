@@ -54,7 +54,8 @@ void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]) {
 		}
 		pesTot += pai.getElements()[i].weight;
 	}
-	comecoBinPai.pop_back();
+	if (fimBinPai.size() < comecoBinPai.size())
+		comecoBinPai.pop_back();
 
 	comecoBinMae.reserve(pai.getBins().size()); fimBinMae.reserve(pai.getBins().size());
 	aux = 0;
@@ -74,38 +75,42 @@ void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]) {
 		}
 		pesTot += mae.getElements()[i].weight;
 	}
-	comecoBinMae.pop_back();
+	if(fimBinMae.size() < comecoBinMae.size())
+		comecoBinMae.pop_back();
 
 	//criar os filhos
 
 	std::vector<elemento> filho1, filho2;
 	filho1.reserve(pai.getElements().size()); filho2.reserve(pai.getElements().size());
-	elemento elem;
-	elem.id = -1;
-	elem.weight = 0;
 	int auxPai = 0, auxMae = 0;
 
 	
 	for (int i = 0; i < pai.getElements().size(); i++) {
 		//copia os melhores bins do pai
-		if (comecoBinPai.size() > 0) {
+		if (comecoBinPai.size() > 0 && auxPai < comecoBinPai.size()) {
 			if (i >= comecoBinPai[auxPai] && i <= fimBinPai[auxPai]) {
 				filho1.push_back(pai.getElements()[i]);
 				if (i == fimBinPai[auxPai])
 					auxPai++;
 			}
+			//copia os elementos restantes da mae
+			else
+				filho1.push_back(recursiva(i, comecoBinPai, fimBinPai, pai, mae));
 		}
 		//copia os elementos restantes da mae
 		else 
 			filho1.push_back(recursiva(i, comecoBinPai, fimBinPai, pai, mae));
 		
 		//copia os melhores bins da mae
-		if (comecoBinMae.size() > 0) {
+		if (comecoBinMae.size() > 0 && auxMae < comecoBinMae.size()) {
 			if (i >= comecoBinMae[auxMae] && i <= fimBinMae[auxMae]) {
 				filho2.push_back(mae.getElements()[i]);
 				if (i == fimBinMae[auxMae])
 					auxMae++;
 			}
+			//copia os elementos restantes do pai
+			else
+				filho2.push_back(recursiva(i, comecoBinMae, fimBinMae, mae, pai));
 		}
 		//copia os elementos restantes do pai
 		else

@@ -24,7 +24,7 @@ int main(void)
 	std::vector<Solucao> populacao;
 	Solucao filhos[2];
 	/*
-	Isso funciona
+	//Isso funciona
 	populacao = criaVecPop(ARQ1, popSize);
 
 	crossover2(populacao[0], populacao[1], filhos);
