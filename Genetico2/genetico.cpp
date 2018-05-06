@@ -202,7 +202,7 @@ void genetico(char* path, int popSize) {
 	printf("Tempo gasto: %g s.\n", Tempo);
 
 	melhor.exibe();
-	melhor.geraArq(path);
+	melhor.geraArq(path, "Genetico");
 }
 
 std::vector<Solucao> embaralhaPop(std::vector<Solucao> populacao) {

@@ -103,18 +103,22 @@ void Solucao::exibe() {
 	printf("Peso: %d\n", pesTot);
 }
 
-void Solucao::geraArq(char *path) {
+void Solucao::geraArq(char *path, char *tipo) {
 	int aux = 0;
-	char path2[200], newPath[207];
+	char path2[201], newPath[218];
 	FILE* f;
+
 	int i = 0;
 	strcpy(path2, path);
 	while (path2[i] != '.') {
 		i++;
 	}
 	path2[i] = '\0';
-	strcat(newPath, path2);
-	strcat(newPath, "Solucao.txt");
+
+	strcpy(newPath, path2);
+	strcat(newPath, "_");
+	strcat(newPath, tipo);
+	strcat(newPath, "_Solucao.txt");
 
 	if ((f = fopen(newPath, "wt")) == NULL) {
 		printf("erro ao abrir o arquivo\n");
