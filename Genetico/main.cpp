@@ -20,7 +20,7 @@ void geraSeed();
 int main(void)
 {		
 	int tipoalgoritmo;
-	printf("Informe qual o numero do algoritmo desejado:\n1 - Genetico\n2- Simulated Anealing\n");
+	printf("Informe qual o numero do algoritmo desejado:\n1 - Genetico\n2 - Simulated Anealing\n");
 	scanf("%d", &tipoalgoritmo);
 	if (tipoalgoritmo == 1)
 	{
@@ -31,7 +31,7 @@ int main(void)
 		simulatedAnnealing(ARQ1);
 	}
 	else
-		printf("Numero do algoritmo incorreto");
+		printf("Numero do algoritmo incorreto\n");
 	return 0;
 }
 
