@@ -24,11 +24,11 @@ int main(void)
 	scanf("%d", &tipoalgoritmo);
 	if (tipoalgoritmo == 1)
 	{
-		genetico(ARQ1, 500);
+		genetico(ARQ1, 100);
 	}
 	else if (tipoalgoritmo == 2)
 	{
-		simulatedAnnealing(ARQ1);
+		simulatedAnnealing(ARQ3);
 	}
 	else
 		printf("Numero do algoritmo incorreto\n");

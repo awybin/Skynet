@@ -1,6 +1,8 @@
+#define _CRT_SECURE_NO_DEPRECATE
 #include "solucao.h"
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 Solucao::Solucao()
 {
@@ -70,7 +72,6 @@ void Solucao::swap(unsigned int seed)
     {
         srand(seed);
         x=1;
-        printf("a\n");
     }
     int idx1 = 0, idx2 = 0;
     while(idx1==idx2)
@@ -87,7 +88,8 @@ void Solucao::swap(unsigned int seed)
 
 void Solucao::exibe() {
 	int aux = 0, pesTot = 0;
-	printf("%d\n", _bins.size());
+
+	printf( "%d\n", _bins.size());
 	for (int i = 0; i < _elements.size(); i++) {
 
 		if (_bins[aux] == i) {
@@ -99,4 +101,38 @@ void Solucao::exibe() {
 		printf("%d\t", _elements[i].id);
 	}
 	printf("Peso: %d\n", pesTot);
+}
+
+void Solucao::geraArq(char *path, char *tipo) {
+	int aux = 0;
+	char path2[201], newPath[218];
+	FILE* f;
+
+	int i = 0;
+	strcpy(path2, path);
+	while (path2[i] != '.') {
+		i++;
+	}
+	path2[i] = '\0';
+
+	strcpy(newPath, path2);
+	strcat(newPath, "_");
+	strcat(newPath, tipo);
+	strcat(newPath, "_Solucao.txt");
+
+	if ((f = fopen(newPath, "wt")) == NULL) {
+		printf("erro ao abrir o arquivo\n");
+		system("pause");
+		exit(1);
+	}
+
+	fprintf(f, "%d\n", _bins.size());
+	for (int i = 0; i < _elements.size(); i++) {
+
+		if (_bins[aux] == i) {
+			fprintf(f, "\n");
+			aux++;
+		}
+		fprintf(f, "%d\t", _elements[i].id);
+	}
 }

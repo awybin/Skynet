@@ -21,35 +21,35 @@ void simulatedAnnealing(char* Path)
 	unsigned int saSeed, swapSeed, arqNum, n, ultimoj, ultimofitness;
 	int qtdIni = 1;
 	std::vector<Solucao> solu;
-	if (Path == ARQ1)// Resultado: 20 em 0 seg
+	if (strcmp(ARQ1,Path) == 0)// Resultado: 20 em 0 seg
 	{
 		solu = criaVecPop(Path, qtdIni);
 		saSeed = 69322;
 		swapSeed = 23353;
 		n = 200000;
 	}
-	else if (Path == ARQ2)// Resultado: 41 em 4 seg
+	else if (strcmp(ARQ2, Path) == 0)// Resultado: 41 em 4 seg
 	{
 		solu = criaVecPop(Path, qtdIni);
 		saSeed = 194562;
 		swapSeed = 13455;
 		n = 200000;
 	}
-	else if (Path == ARQ3)// Resultado: 46 em 87 seg
+	else if (strcmp(ARQ3, Path) == 0)// Resultado: 46 em 87 seg
 	{
 		solu = criaVecPop(Path, qtdIni);
 		saSeed = 1762;
 		swapSeed = 16875;
 		n = 200000;
 	}
-	else if (Path == ARQ4)// Resultado: 104 em 106 seg
+	else if (strcmp(ARQ4, Path) == 0)// Resultado: 104 em 106 seg
 	{
 		solu = criaVecPop(Path, qtdIni);
 		saSeed = 12;
 		swapSeed = 13;
 		n = 200000;
 	}
-	else if (Path == ARQ5)// Resultado: 213 em 137 seg
+	else if (strcmp(ARQ5, Path) == 0)// Resultado: 213 em 137 seg
 	{
 		solu = criaVecPop(ARQ5, qtdIni);
 		saSeed = 151101;
