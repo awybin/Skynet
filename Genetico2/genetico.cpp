@@ -35,7 +35,7 @@ elemento recursiva(int i, std::vector<int> comecoBin, std::vector<int> fimBin, S
 	return pai2.getElements()[i];
 }
 
-void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]) {
+void crossover(Solucao pai, Solucao mae, Solucao filhos[2]) {
 
 	//achar os bins com mais de 90% cheios nos pais
 	std::vector<int> comecoBinPai, fimBinPai, comecoBinMae, fimBinMae;
@@ -134,7 +134,104 @@ void crossover2(Solucao pai, Solucao mae, Solucao filhos[2]) {
 }
 
 
-void crossover(Solucao pai, Solucao mae, Solucao filhos[2])
+bool melhorSolucao(const Solucao &s1, const Solucao &s2)
+{
+	if (fitness(s1) >= fitness(s2))
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
+Solucao mutacao(Solucao filho)
+{
+	int mutRatio = 7;
+	if (mutRatio > rand() % 100)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			filho.swap(3);
+		}
+	}
+	return filho;
+}
+
+void genetico(char* path, int popSize) {
+	int contGerac = 0;// Conta a quantidade de geracoes
+	int cont = 0; //Conta as repetições sem melhora
+	std::vector<Solucao> populacao;
+
+	clock_t Ticks[2];
+	Ticks[0] = clock();
+
+	populacao = criaVecPop(path, popSize);
+
+	populacao = selecao(populacao);
+	Solucao melhor = populacao[0];
+	srand(2);
+
+	printf("Inicial %d bins, populacao %d\n", melhor.getBins().size(), popSize);
+
+
+	while (cont < 50) {
+		
+		populacao = embaralhaPop(populacao);
+
+		for (int i = 0; i < populacao.size() / 4; i++) {
+			crossover(populacao[2*i], populacao[2 * i + 1], &populacao[populacao.size() / 2 + 2*i]);
+		}
+
+		//Checa se houve melhora
+		populacao = selecao(populacao);
+		if (melhorSolucao(populacao[0], melhor)) {
+			//Se nao houve melhora aumenta o contador
+			cont++;
+		}
+		else {
+			//Se houve melhora substitui o melhor e zera o contador
+			melhor = populacao[0];
+			cont = 0;
+		}
+		contGerac++;
+	}
+	printf("Final %d bins, %d geracoes\n", melhor.getBins().size(), contGerac);
+
+	Ticks[1] = clock();
+	double Tempo = (Ticks[1] - Ticks[0])/ CLOCKS_PER_SEC;
+	printf("Tempo gasto: %g s.\n", Tempo);
+
+	melhor.exibe();
+	melhor.geraArq(path, "Genetico");
+}
+
+std::vector<Solucao> embaralhaPop(std::vector<Solucao> populacao) {
+	std::vector<Solucao> novoPop;
+	std::vector<int> usados;
+
+	novoPop.reserve(populacao.size());
+	usados.reserve(populacao.size()/2);
+	
+	for (int i = 0; i < populacao.size() / 2; i++) 
+		usados.push_back(1);
+	
+	for (int i = 0; i < populacao.size() / 2; i++) {
+		int prox = 1;
+		while (usados[prox] == -1) 
+			prox = rand() % populacao.size()/2;
+		
+		novoPop.push_back(populacao[prox]);
+		usados[prox] = -1;
+	}
+	
+	for (int i = populacao.size() / 2; i < populacao.size(); i++)
+		novoPop.push_back(populacao[0]);
+
+	return novoPop;
+}
+
+
+void crossover2(Solucao pai, Solucao mae, Solucao filhos[2])
 {
 	std::vector<elemento> elemPai, elemMae, filho1, filho2;
 	elemPai = pai.getElements();
@@ -193,101 +290,4 @@ void crossover(Solucao pai, Solucao mae, Solucao filhos[2])
 
 	filhos[0].fillBins();
 	filhos[1].fillBins();
-}
-
-bool melhorSolucao(const Solucao &s1, const Solucao &s2)
-{
-	if (fitness(s1) >= fitness(s2))
-	{
-		return true;
-	}
-	else
-		return false;
-}
-
-Solucao mutacao(Solucao filho)
-{
-	int mutRatio = 7;
-	if (mutRatio > rand() % 100)
-	{
-		for (int i = 0; i < 10; i++)
-		{
-			filho.swap(3);
-		}
-	}
-	return filho;
-}
-
-void genetico(char* path, int popSize) {
-	int teste = 0;
-	int cont = 0; //Conta as repetições sem melhora
-	std::vector<Solucao> populacao;
-	std::vector<Solucao> populacao2;
-	populacao = criaVecPop(path, popSize);
-	populacao2 = populacao;
-
-	populacao = selecao(populacao);
-	Solucao melhor = populacao[0];
-	srand(2);
-
-	printf("Inicial %d bins\n", melhor.getBins().size());
-	//melhor.exibe();
-	//printf("\n\n");
-
-	clock_t Ticks[2];
-	Ticks[0] = clock();
-
-	while (cont < 30) {
-		
-		populacao = embaralhaPop(populacao);
-
-		for (int i = 0; i < populacao.size() / 4; i++) {
-			crossover2(populacao[2*i], populacao[2 * i + 1], &populacao[populacao.size() / 2 + 2*i]);
-		}
-		//populacao = populacao2;
-
-		//Checa se houve melhora
-		populacao = selecao(populacao);
-		if (melhorSolucao(populacao[0], melhor)) {
-			cont++;
-			teste++;
-		}
-		else {
-			melhor = populacao[0];
-			cont = 0;
-			teste++;
-			//printf("%d geracao, melhorou\n %d bins\n\n", teste, melhor.getBins().size());
-		}
-	}
-	printf("Final %d bins, %d geracoes\n\n", melhor.getBins().size(), teste);
-	Ticks[1] = clock();
-	double Tempo = (Ticks[1] - Ticks[0])/ CLOCKS_PER_SEC;
-	printf("Tempo gasto: %g s.\n", Tempo);
-	//melhor.exibe();
-	
-}
-
-std::vector<Solucao> embaralhaPop(std::vector<Solucao> populacao) {
-	std::vector<Solucao> novoPop;
-	std::vector<int> usados;
-
-	novoPop.reserve(populacao.size());
-	usados.reserve(populacao.size()/2);
-	
-	for (int i = 0; i < populacao.size() / 2; i++) 
-		usados.push_back(1);
-	
-	for (int i = 0; i < populacao.size() / 2; i++) {
-		int prox = 1;
-		while (usados[prox] == -1) 
-			prox = rand() % populacao.size()/2;
-		
-		novoPop.push_back(populacao[prox]);
-		usados[prox] = -1;
-	}
-	
-	for (int i = populacao.size() / 2; i < populacao.size(); i++)
-		novoPop.push_back(populacao[0]);
-
-	return novoPop;
 }

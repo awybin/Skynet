@@ -42,6 +42,10 @@ public:
     void swap(unsigned int seed);
 
 	void exibe();
+	/*Gera arquivo de saida com o mesmo nome do path adicionando _Tipo_Solucao no final, 
+	sendo que tipo deve ser ou Genetico ou Anealing
+	path deve ter no maximo 200 caracteres*/
+	void geraArq(char *path, char *tipo);
 
 private:
 	/*Capacidade maxima de um bin*/

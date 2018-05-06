@@ -21,23 +21,7 @@ void simulatedAnnealing();
 int main(void)
 {
 	int popSize = 100;
-	std::vector<Solucao> populacao;
-	Solucao filhos[2];
-	/*
-	//Isso funciona
-	populacao = criaVecPop(ARQ1, popSize);
-
-	crossover2(populacao[0], populacao[1], filhos);
-
-	printf("Pai1==============\n");
-	populacao[0].exibe();
-	printf("Pai1==============\n");
-	populacao[1].exibe();
-	printf("Filho1==============\n");
-	filhos[0].exibe();
-	printf("Filho2==============\n");
-	filhos[1].exibe();
-	*/
+	
 	printf("Arq1===================================\n\n");
 	genetico(ARQ1, popSize);
 	printf("Arq2===================================\n\n");
