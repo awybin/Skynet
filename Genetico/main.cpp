@@ -17,27 +17,21 @@
 
 void geraSeed();
 
-void simulatedAnnealing();
-
 int main(void)
-{
-	/*int popSize = 500;
-	std::vector<Solucao> populacao;
-
-	printf("Arq1===================================\n\n");
-	genetico(ARQ1, popSize);
-	printf("Arq2===================================\n\n");
-	genetico(ARQ2, popSize);
-	printf("Arq3===================================\n\n");
-	genetico(ARQ3, popSize);
-	printf("Arq4===================================\n\n");
-	genetico(ARQ4, popSize);
-	printf("Arq5===================================\n\n");
-	genetico(ARQ5, popSize);
-
-	scanf("%d", &popSize);*/
-        simulatedAnnealing();
-        
+{		
+	int tipoalgoritmo;
+	printf("Informe qual o numero do algoritmo desejado:\n1 - Genetico\n2- Simulated Anealing\n");
+	scanf("%d", &tipoalgoritmo);
+	if (tipoalgoritmo == 1)
+	{
+		genetico(ARQ1, 500);
+	}
+	else if (tipoalgoritmo == 2)
+	{
+		simulatedAnnealing(ARQ1);
+	}
+	else
+		printf("Numero do algoritmo incorreto");
 	return 0;
 }
 

@@ -14,49 +14,47 @@
 #define ARQ4 "Falkenauer_u250_04.txt"
 #define ARQ5 "Falkenauer_u500_05.txt"
 
-void simulatedAnnealing()
+void simulatedAnnealing(char* Path)
 {
 	printf("\n===================================================\n");
 	double e = 2.718281828, p, temp;
-	unsigned int saSeed, swapSeed, arqNum, n;
+	unsigned int saSeed, swapSeed, arqNum, n, ultimoj, ultimofitness;
 	int qtdIni = 1;
-	printf("Informe qual instancia do problema deve ser resolvida:\n");
-	scanf("%d", &arqNum);
 	std::vector<Solucao> solu;
-	if (arqNum == 1)// Resultado: 20 em 0 seg
+	if (Path == ARQ1)// Resultado: 20 em 0 seg
 	{
-		solu = criaVecPop(ARQ1, qtdIni);
+		solu = criaVecPop(Path, qtdIni);
 		saSeed = 69322;
 		swapSeed = 23353;
-		n = 5000;
+		n = 200000;
 	}
-	else if (arqNum == 2)// Resultado: 41 em 4 seg
+	else if (Path == ARQ2)// Resultado: 41 em 4 seg
 	{
-		solu = criaVecPop(ARQ2, qtdIni);
+		solu = criaVecPop(Path, qtdIni);
 		saSeed = 194562;
 		swapSeed = 13455;
-		n = 5000;
+		n = 200000;
 	}
-	else if (arqNum == 3)// Resultado: 46 em 87 seg
+	else if (Path == ARQ3)// Resultado: 46 em 87 seg
 	{
-		solu = criaVecPop(ARQ3, qtdIni);
+		solu = criaVecPop(Path, qtdIni);
 		saSeed = 1762;
 		swapSeed = 16875;
-		n = 5000;
+		n = 200000;
 	}
-	else if (arqNum == 4)// Resultado: 104 em 106 seg
+	else if (Path == ARQ4)// Resultado: 104 em 106 seg
 	{
-		solu = criaVecPop(ARQ4, qtdIni);
+		solu = criaVecPop(Path, qtdIni);
 		saSeed = 12;
 		swapSeed = 13;
-		n = 5000;
+		n = 200000;
 	}
-	else if (arqNum == 5)// Resultado: 213 em 137 seg
+	else if (Path == ARQ5)// Resultado: 213 em 137 seg
 	{
 		solu = criaVecPop(ARQ5, qtdIni);
 		saSeed = 151101;
 		swapSeed = 16200;
-		n = 5000;
+		n = 200000;
 	}
 	else
 	{
@@ -76,8 +74,10 @@ void simulatedAnnealing()
 				auto soluNew = solu[i];
 				soluNew.swap(swapSeed);
 				int delta = fitness(soluNew) - fitness(solu[i]);
-				if (delta<0)
+				if (delta < 0)
+				{
 					solu[i] = soluNew;
+				}
 				else
 				{
 					p = pow(e, -((double)delta) / temp);
@@ -85,6 +85,7 @@ void simulatedAnnealing()
 						solu[i] = soluNew;
 				}
 			}
+			
 		}
 		printf("%d\n", solu[i].getBins().size());
 	}
