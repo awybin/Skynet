@@ -35,10 +35,10 @@ std::vector<elemento> Solucao::getElements()
 
 void Solucao::fillBins()
 {
-	unsigned int aux = 0;
+	unsigned int aux = 0, i;
 	_bins.clear();
 
-	for (unsigned int i = 0; i < _elements.size(); i++)
+	for (i = 0; i < _elements.size(); i++)
 	{
 		aux += _elements[i].weight;
 		if (aux > _capacity)
@@ -48,6 +48,7 @@ void Solucao::fillBins()
 			aux += _elements[i].weight;
 		}
 	}
+	_bins.push_back(i);
 }
 
 void Solucao::add(unsigned int elemSize, unsigned int id) {

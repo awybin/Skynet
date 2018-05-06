@@ -37,6 +37,11 @@ public:
 
 	/*Muda o vetor de elementos pelo recebido como argumento*/
 	void setElem(std::vector<elemento> elementos);
+        
+    /*Troca posicao de dois elementos, altera permanentemente a solucao, logo copie antes*/
+    void swap(unsigned int seed);
+
+	void exibe();
 
 private:
 	/*Capacidade maxima de um bin*/
