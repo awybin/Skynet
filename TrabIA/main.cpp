@@ -19,16 +19,45 @@ void geraSeed();
 
 int main(void)
 {		
-	int tipoalgoritmo;
+	int tipoalgoritmo, n;
 	printf("Informe qual o numero do algoritmo desejado:\n1 - Genetico\n2 - Simulated Anealing\n");
 	scanf("%d", &tipoalgoritmo);
 	if (tipoalgoritmo == 1)
 	{
+		printf("ARQUIVO 1\n");
 		genetico(ARQ1, 100);
+		printf("\n\n");
+		printf("ARQUIVO 2\n");
+		genetico(ARQ2, 100);
+		printf("\n\n");
+		printf("ARQUIVO 3\n");
+		genetico(ARQ3, 100);
+		printf("\n\n");
+		printf("ARQUIVO 4\n");
+		genetico(ARQ4, 100);
+		printf("\n\n");
+		printf("ARQUIVO 5\n");
+		genetico(ARQ5, 100);
+		printf("\n\n");
 	}
 	else if (tipoalgoritmo == 2)
 	{
-		simulatedAnnealing(ARQ3);
+		n = 5000; /*Numero de iteracoes*/
+		printf("ARQUIVO 1\n");
+		simulatedAnnealing(ARQ1, n);
+		printf("\n\n");
+		printf("ARQUIVO 2\n");
+		simulatedAnnealing(ARQ2, n);
+		printf("\n\n");
+		printf("ARQUIVO 3\n");
+		simulatedAnnealing(ARQ3, n);
+		printf("\n\n");
+		printf("ARQUIVO 4\n");
+		simulatedAnnealing(ARQ4, n);
+		printf("\n\n");
+		printf("ARQUIVO 5\n");
+		simulatedAnnealing(ARQ5, n);
+
 	}
 	else
 		printf("Numero do algoritmo incorreto\n");
