@@ -1,0 +1,28 @@
+﻿  solucao.cpp
+c:\users\usuario\desktop\trabia\trabia\solucao.cpp(93): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\solucao.cpp(130): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  genetico.cpp
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(12): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(13): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(26): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(47): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(70): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(93): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(96): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(111): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(155): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(186): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(222): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(225): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(234): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(251): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(262): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\genetico.cpp(273): warning C4018: '<': signed/unsigned mismatch
+  criaPop.cpp
+  anealing.cpp
+c:\users\usuario\desktop\trabia\trabia\anealing.cpp(64): warning C4018: '<': signed/unsigned mismatch
+c:\users\usuario\desktop\trabia\trabia\anealing.cpp(68): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  TrabIA.vcxproj -> C:\Users\Usuario\Desktop\TrabIA\Debug\TrabIA.exe
+  TrabIA.vcxproj -> C:\Users\Usuario\Desktop\TrabIA\Debug\TrabIA.pdb (Partial PDB)
