@@ -171,10 +171,10 @@ void genetico(char* path, int popSize) {
 	Solucao melhor = populacao[0];
 	srand(2);
 
-	printf("Inicial %d bins, populacao %d\n", melhor.getBins().size(), popSize);
+	//printf("Inicial %d bins, populacao %d\n", melhor.getBins().size(), popSize);
 
 
-	while (cont < 50) {
+	while (cont < 30) {
 		
 		populacao = embaralhaPop(populacao);
 
@@ -195,13 +195,13 @@ void genetico(char* path, int popSize) {
 		}
 		contGerac++;
 	}
-	printf("Final %d bins, %d geracoes\n", melhor.getBins().size(), contGerac);
+	printf("Solucao Final %d bins, %d geracoes\n", melhor.getBins().size(), contGerac);
 
 	Ticks[1] = clock();
-	double Tempo = (Ticks[1] - Ticks[0])/ CLOCKS_PER_SEC;
-	printf("Tempo gasto: %g s.\n", Tempo);
+	float Tempo = (Ticks[1] - Ticks[0])/(float) CLOCKS_PER_SEC;
+	printf("Tempo gasto: %.2f s.\n", Tempo);
 
-	melhor.exibe();
+	//melhor.exibe();
 	melhor.geraArq(path, "Genetico");
 }
 
