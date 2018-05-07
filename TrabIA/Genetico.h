@@ -1,4 +1,8 @@
 
+/*Faz as chamadas das funcoes fazendo a melhor metade da populacao
+permanecer e substituindo a metade pior com os filhos dos melhores
+O popSize passado como parametro deve ser um numero divisivel por 4*/
+void genetico(char* path, int popSize);
 
 /*Altera a ordem do vetor de soluções para que o inicio tenham as soluções com melhor valor de fitness*/
 std::vector<Solucao> selecao(std::vector<Solucao> populacao);
@@ -16,11 +20,6 @@ bool melhorSolucao(const Solucao &s1, const Solucao &s2);
 
 /*Tem uma chance de 7% de realizar swaps em 10% do tamanho do vetor de elementos*/
 Solucao mutacao(Solucao filho);
-
-/*Faz as chamadas das funcoes fazendo a melhor metade da populacao
-  permanecer e substituindo a metade pior com os filhos dos melhores
-  O popSize passado como parametro deve ser um numero divisivel por 4*/
-void genetico(char* path, int popSize);
 
 /*Embaralha a primeira metade do vetor de populacao passado como parametro de forma pseudo-aleatoria*/
 std::vector<Solucao> embaralhaPop(std::vector<Solucao> populacao);

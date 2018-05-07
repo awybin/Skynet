@@ -135,4 +135,5 @@ void Solucao::geraArq(char *path, char *tipo) {
 		}
 		fprintf(f, "%d\t", _elements[i].id);
 	}
+	fclose(f);
 }

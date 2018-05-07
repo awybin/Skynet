@@ -42,6 +42,8 @@ void crossover(Solucao pai, Solucao mae, Solucao filhos[2]) {
 	comecoBinPai.reserve(pai.getBins().size()); fimBinPai.reserve(pai.getBins().size());
 	int aux = 0, pesTot = 0;
 	comecoBinPai.push_back(0);
+
+	//Procura no pai
 	for (int i = 0; i < pai.getElements().size(); i++) {
 
 		if (pai.getBins()[aux] == i) {
@@ -64,6 +66,7 @@ void crossover(Solucao pai, Solucao mae, Solucao filhos[2]) {
 	pesTot = 0;
 	comecoBinMae.push_back(0);
 
+	//Procura na mae
 	for (int i = 0; i < mae.getElements().size(); i++) {
 
 		if (mae.getBins()[aux] == i) {
@@ -171,19 +174,23 @@ void genetico(char* path, int popSize) {
 	Solucao melhor = populacao[0];
 	srand(2);
 
-	//printf("Inicial %d bins, populacao %d\n", melhor.getBins().size(), popSize);
+	printf("Inicial %d bins, populacao %d\n", melhor.getBins().size(), popSize);
 
 
 	while (cont < 30) {
 		
+		//embaralha a primeira metade da populacao para haver maior variacao de escolha dos pais
 		populacao = embaralhaPop(populacao);
 
+		//Realiza o crossover de toda a populacao
 		for (int i = 0; i < populacao.size() / 4; i++) {
 			crossover(populacao[2*i], populacao[2 * i + 1], &populacao[populacao.size() / 2 + 2*i]);
 		}
 
-		//Checa se houve melhora
+		//Ordena a populacao usando a funcao fitness
 		populacao = selecao(populacao);
+
+		//Checa se houve melhora
 		if (melhorSolucao(populacao[0], melhor)) {
 			//Se nao houve melhora aumenta o contador
 			cont++;

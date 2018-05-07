@@ -19,62 +19,51 @@ void geraSeed();
 
 int main(void)
 {		
-	int tipoalgoritmo, n;
+	int tipoalgoritmo;
 	printf("Informe qual o numero do algoritmo desejado:\n1 - Genetico\n2 - Simulated Anealing\n");
 	scanf("%d", &tipoalgoritmo);
 	if (tipoalgoritmo == 1)
 	{
-<<<<<<< HEAD
-		printf("ARQUIVO 1\n");
-		genetico(ARQ1, 100);
-		printf("\n\n");
-		printf("ARQUIVO 2\n");
-		genetico(ARQ2, 100);
-		printf("\n\n");
-		printf("ARQUIVO 3\n");
-		genetico(ARQ3, 100);
-		printf("\n\n");
-		printf("ARQUIVO 4\n");
-		genetico(ARQ4, 100);
-		printf("\n\n");
-		printf("ARQUIVO 5\n");
-		genetico(ARQ5, 100);
-		printf("\n\n");
-=======
 		int popSize = 100;
-		printf("ARQ1======\n");
+		printf("\nARQUIVO 1");
+		printf("\n===================================================\n");
 		genetico(ARQ1, popSize);
-		printf("ARQ2======\n");
+		printf("\nARQUIVO 2");
+		printf("\n===================================================\n");
 		genetico(ARQ2, popSize);
-		printf("ARQ3======\n");
+		printf("\nARQUIVO 3");
+		printf("\n===================================================\n");
 		genetico(ARQ3, popSize);
-		printf("ARQ4======\n");
+		printf("\nARQUIVO 4");
+		printf("\n===================================================\n");
 		genetico(ARQ4, popSize);
-		printf("ARQ5======\n");
+		printf("\nARQUIVO 5");
+		printf("\n===================================================\n");
 		genetico(ARQ5, popSize);
->>>>>>> 9a4d26f884e5291e4ef20e5d0ed87da7a4c7d5ad
 	}
 	else if (tipoalgoritmo == 2)
 	{
-		n = 5000; /*Numero de iteracoes*/
-		printf("ARQUIVO 1\n");
+		int n = 5000; /*Numero de iteracoes*/
+		printf("ARQUIVO 1");
 		simulatedAnnealing(ARQ1, n);
 		printf("\n\n");
-		printf("ARQUIVO 2\n");
+		printf("ARQUIVO 2");
 		simulatedAnnealing(ARQ2, n);
 		printf("\n\n");
-		printf("ARQUIVO 3\n");
+		printf("ARQUIVO 3");
 		simulatedAnnealing(ARQ3, n);
 		printf("\n\n");
-		printf("ARQUIVO 4\n");
+		printf("ARQUIVO 4");
 		simulatedAnnealing(ARQ4, n);
 		printf("\n\n");
-		printf("ARQUIVO 5\n");
+		printf("ARQUIVO 5");
 		simulatedAnnealing(ARQ5, n);
 
 	}
 	else
 		printf("Numero do algoritmo incorreto\n");
+
+	system("pause");
 	return 0;
 }
 
@@ -106,4 +95,5 @@ void geraSeed() {
 		v[i] = temp;
 		fprintf(f, "%d\n", temp);
 	}
+	fclose(f);
 }
