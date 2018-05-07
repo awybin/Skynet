@@ -24,7 +24,17 @@ int main(void)
 	scanf("%d", &tipoalgoritmo);
 	if (tipoalgoritmo == 1)
 	{
-		genetico(ARQ1, 100);
+		int popSize = 100;
+		printf("ARQ1======\n");
+		genetico(ARQ1, popSize);
+		printf("ARQ2======\n");
+		genetico(ARQ2, popSize);
+		printf("ARQ3======\n");
+		genetico(ARQ3, popSize);
+		printf("ARQ4======\n");
+		genetico(ARQ4, popSize);
+		printf("ARQ5======\n");
+		genetico(ARQ5, popSize);
 	}
 	else if (tipoalgoritmo == 2)
 	{
